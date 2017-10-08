@@ -8,13 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		2B55CBC81F89AEFE004B0BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBC71F89AEFE004B0BB7 /* AppDelegate.swift */; };
-		2B55CBCA1F89AEFE004B0BB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBC91F89AEFE004B0BB7 /* ViewController.swift */; };
+		2B55CBCA1F89AEFE004B0BB7 /* FDDiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBC91F89AEFE004B0BB7 /* FDDiceController.swift */; };
 		2B55CBCD1F89AEFE004B0BB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBCB1F89AEFE004B0BB7 /* Main.storyboard */; };
 		2B55CBCF1F89AEFE004B0BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */; };
 		2B55CBD21F89AEFE004B0BB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBD01F89AEFE004B0BB7 /* LaunchScreen.storyboard */; };
 		2B55CBDD1F89AEFE004B0BB7 /* Fyre_DiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBDC1F89AEFE004B0BB7 /* Fyre_DiceTests.swift */; };
 		2B55CBE81F89AEFE004B0BB7 /* Fyre_DiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBE71F89AEFE004B0BB7 /* Fyre_DiceUITests.swift */; };
-		2B55CBF61F89B211004B0BB7 /* FDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBF51F89B211004B0BB7 /* FDButton.swift */; };
+		2B74ADB61F8A98F000F6139F /* FDFyreDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */; };
+		2B9DA7511F8ABA1D007311EB /* DeathSound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBFC1F89CD58004B0BB7 /* DeathSound.aif */; };
+		2B9DA7531F8ABA1D007311EB /* 3dice.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CC001F89CD71004B0BB7 /* 3dice.aif */; };
+		2B9DA7551F8ABA1D007311EB /* Awww.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CC011F89CD71004B0BB7 /* Awww.aif */; };
+		2B9DA7561F8AC1EC007311EB /* 1die.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBFB1F89CD58004B0BB7 /* 1die.aif */; };
+		2B9DA7581F8ACC93007311EB /* 10dice.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B9DA7571F8ACC84007311EB /* 10dice.aif */; };
+		2BC3F2C51F8ADC30001450C3 /* FDSavedDiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC3F2C41F8ADC30001450C3 /* FDSavedDiceController.swift */; };
+		2BC3F2C71F8ADC86001450C3 /* FDSavedDiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC3F2C61F8ADC86001450C3 /* FDSavedDiceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +44,7 @@
 /* Begin PBXFileReference section */
 		2B55CBC41F89AEFE004B0BB7 /* Fyre Dice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fyre Dice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B55CBC71F89AEFE004B0BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2B55CBC91F89AEFE004B0BB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2B55CBC91F89AEFE004B0BB7 /* FDDiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDDiceController.swift; sourceTree = "<group>"; };
 		2B55CBCC1F89AEFE004B0BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B55CBD11F89AEFE004B0BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,16 +55,16 @@
 		2B55CBE31F89AEFE004B0BB7 /* Fyre DiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fyre DiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B55CBE71F89AEFE004B0BB7 /* Fyre_DiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fyre_DiceUITests.swift; sourceTree = "<group>"; };
 		2B55CBE91F89AEFE004B0BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B55CBF51F89B211004B0BB7 /* FDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDButton.swift; sourceTree = "<group>"; };
 		2B55CBFA1F89CD49004B0BB7 /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
-		2B55CBFB1F89CD58004B0BB7 /* dice.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.aif; sourceTree = "<group>"; };
+		2B55CBFB1F89CD58004B0BB7 /* 1die.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1die.aif; sourceTree = "<group>"; };
 		2B55CBFC1F89CD58004B0BB7 /* DeathSound.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = DeathSound.aif; sourceTree = "<group>"; };
 		2B55CBFD1F89CD5D004B0BB7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		2B55CBFE1F89CD71004B0BB7 /* awwwj.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = awwwj.aif; sourceTree = "<group>"; };
-		2B55CBFF1F89CD71004B0BB7 /* 10dice.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 10dice.aif; sourceTree = "<group>"; };
 		2B55CC001F89CD71004B0BB7 /* 3dice.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3dice.aif; sourceTree = "<group>"; };
 		2B55CC011F89CD71004B0BB7 /* Awww.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Awww.aif; sourceTree = "<group>"; };
-		2B55CC021F89CD71004B0BB7 /* 1die.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1die.aif; sourceTree = "<group>"; };
+		2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDFyreDice.swift; sourceTree = "<group>"; };
+		2B9DA7571F8ACC84007311EB /* 10dice.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 10dice.aif; sourceTree = "<group>"; };
+		2BC3F2C41F8ADC30001450C3 /* FDSavedDiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDSavedDiceController.swift; sourceTree = "<group>"; };
+		2BC3F2C61F8ADC86001450C3 /* FDSavedDiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDSavedDiceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +95,6 @@
 		2B55CBBB1F89AEFE004B0BB7 = {
 			isa = PBXGroup;
 			children = (
-				2B55CBF91F89CD27004B0BB7 /* Resources */,
 				2B55CBC61F89AEFE004B0BB7 /* Fyre Dice */,
 				2B55CBDB1F89AEFE004B0BB7 /* Fyre DiceTests */,
 				2B55CBE61F89AEFE004B0BB7 /* Fyre DiceUITests */,
@@ -110,12 +116,15 @@
 			isa = PBXGroup;
 			children = (
 				2B55CBC71F89AEFE004B0BB7 /* AppDelegate.swift */,
-				2B55CBC91F89AEFE004B0BB7 /* ViewController.swift */,
-				2B55CBF51F89B211004B0BB7 /* FDButton.swift */,
+				2B55CBC91F89AEFE004B0BB7 /* FDDiceController.swift */,
+				2BC3F2C41F8ADC30001450C3 /* FDSavedDiceController.swift */,
+				2BC3F2C61F8ADC86001450C3 /* FDSavedDiceCell.swift */,
+				2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */,
 				2B55CBCB1F89AEFE004B0BB7 /* Main.storyboard */,
 				2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */,
 				2B55CBD01F89AEFE004B0BB7 /* LaunchScreen.storyboard */,
 				2B55CBD31F89AEFE004B0BB7 /* Info.plist */,
+				2B55CBF91F89CD27004B0BB7 /* Resources */,
 			);
 			path = "Fyre Dice";
 			sourceTree = "<group>";
@@ -141,6 +150,9 @@
 		2B55CBF91F89CD27004B0BB7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2B55CBFC1F89CD58004B0BB7 /* DeathSound.aif */,
+				2B9DA7571F8ACC84007311EB /* 10dice.aif */,
+				2B55CBFB1F89CD58004B0BB7 /* 1die.aif */,
 				2B55CC031F89CD78004B0BB7 /* Sounds */,
 				2B55CBFD1F89CD5D004B0BB7 /* icon.png */,
 				2B55CBFA1F89CD49004B0BB7 /* Buttons */,
@@ -151,13 +163,8 @@
 		2B55CC031F89CD78004B0BB7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				2B55CBFC1F89CD58004B0BB7 /* DeathSound.aif */,
-				2B55CBFB1F89CD58004B0BB7 /* dice.aif */,
-				2B55CC021F89CD71004B0BB7 /* 1die.aif */,
 				2B55CC001F89CD71004B0BB7 /* 3dice.aif */,
-				2B55CBFF1F89CD71004B0BB7 /* 10dice.aif */,
 				2B55CC011F89CD71004B0BB7 /* Awww.aif */,
-				2B55CBFE1F89CD71004B0BB7 /* awwwj.aif */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -269,6 +276,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9DA7581F8ACC93007311EB /* 10dice.aif in Resources */,
+				2B9DA7561F8AC1EC007311EB /* 1die.aif in Resources */,
+				2B9DA7511F8ABA1D007311EB /* DeathSound.aif in Resources */,
+				2B9DA7531F8ABA1D007311EB /* 3dice.aif in Resources */,
+				2B9DA7551F8ABA1D007311EB /* Awww.aif in Resources */,
 				2B55CBD21F89AEFE004B0BB7 /* LaunchScreen.storyboard in Resources */,
 				2B55CBCF1F89AEFE004B0BB7 /* Assets.xcassets in Resources */,
 				2B55CBCD1F89AEFE004B0BB7 /* Main.storyboard in Resources */,
@@ -296,8 +308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B55CBCA1F89AEFE004B0BB7 /* ViewController.swift in Sources */,
-				2B55CBF61F89B211004B0BB7 /* FDButton.swift in Sources */,
+				2BC3F2C71F8ADC86001450C3 /* FDSavedDiceCell.swift in Sources */,
+				2BC3F2C51F8ADC30001450C3 /* FDSavedDiceController.swift in Sources */,
+				2B74ADB61F8A98F000F6139F /* FDFyreDice.swift in Sources */,
+				2B55CBCA1F89AEFE004B0BB7 /* FDDiceController.swift in Sources */,
 				2B55CBC81F89AEFE004B0BB7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,7 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EKUA3NG8A6;
 				INFOPLIST_FILE = "Fyre Dice/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trialbyfyre.Fyre-Dice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,7 +497,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EKUA3NG8A6;
 				INFOPLIST_FILE = "Fyre Dice/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trialbyfyre.Fyre-Dice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
