@@ -17,6 +17,12 @@ class FDSavedDiceController: UITableViewController {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = FDDisplayPreference.sharedDisplayPreferences.backgroundColor
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,6 +80,8 @@ class FDSavedDiceController: UITableViewController {
             cell.dieButton.setTitle(self.savedDice[indexPath.row].display, for: .normal)
             cell.dieButton.isEnabled = true
         }
+        FDDisplayPreference.updateApearenceIn(views: cell.contentView.subviews)
+        cell.contentView.backgroundColor = FDDisplayPreference.sharedDisplayPreferences.backgroundColor
 
         return cell
     }

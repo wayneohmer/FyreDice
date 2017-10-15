@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B30C1C71F940F81001B5C70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B30C1C61F940F81001B5C70 /* Assets.xcassets */; };
 		2B55CBC81F89AEFE004B0BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBC71F89AEFE004B0BB7 /* AppDelegate.swift */; };
 		2B55CBCA1F89AEFE004B0BB7 /* FDDiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBC91F89AEFE004B0BB7 /* FDDiceController.swift */; };
 		2B55CBCD1F89AEFE004B0BB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBCB1F89AEFE004B0BB7 /* Main.storyboard */; };
-		2B55CBCF1F89AEFE004B0BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */; };
 		2B55CBD21F89AEFE004B0BB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBD01F89AEFE004B0BB7 /* LaunchScreen.storyboard */; };
 		2B55CBDD1F89AEFE004B0BB7 /* Fyre_DiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBDC1F89AEFE004B0BB7 /* Fyre_DiceTests.swift */; };
 		2B55CBE81F89AEFE004B0BB7 /* Fyre_DiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55CBE71F89AEFE004B0BB7 /* Fyre_DiceUITests.swift */; };
 		2B74ADB61F8A98F000F6139F /* FDFyreDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */; };
 		2B93A3C91F929A6F006B5E3E /* FDAdvantageSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B93A3C81F929A6F006B5E3E /* FDAdvantageSwitch.swift */; };
 		2B93A3CE1F92DB2B006B5E3E /* customize.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B93A3CD1F92DB2B006B5E3E /* customize.storyboard */; };
+		2B93A3D11F93E595006B5E3E /* FDColorSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B93A3D01F93E595006B5E3E /* FDColorSelectController.swift */; };
+		2B93A3D31F93E5BC006B5E3E /* FDColorSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B93A3D21F93E5BC006B5E3E /* FDColorSelectCell.swift */; };
+		2B93A3D51F93EE47006B5E3E /* CustomizeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B93A3D41F93EE47006B5E3E /* CustomizeController.swift */; };
+		2B93A3D71F93F015006B5E3E /* FDDisplayPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B93A3D61F93F015006B5E3E /* FDDisplayPreference.swift */; };
 		2B9DA7511F8ABA1D007311EB /* DeathSound.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CBFC1F89CD58004B0BB7 /* DeathSound.aif */; };
 		2B9DA7531F8ABA1D007311EB /* 3dice.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CC001F89CD71004B0BB7 /* 3dice.aif */; };
 		2B9DA7551F8ABA1D007311EB /* Awww.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B55CC011F89CD71004B0BB7 /* Awww.aif */; };
@@ -44,11 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B30C1C61F940F81001B5C70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B55CBC41F89AEFE004B0BB7 /* Fyre Dice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fyre Dice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B55CBC71F89AEFE004B0BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B55CBC91F89AEFE004B0BB7 /* FDDiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDDiceController.swift; sourceTree = "<group>"; };
 		2B55CBCC1F89AEFE004B0BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B55CBD11F89AEFE004B0BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B55CBD31F89AEFE004B0BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B55CBD81F89AEFE004B0BB7 /* Fyre DiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fyre DiceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,10 @@
 		2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDFyreDice.swift; sourceTree = "<group>"; };
 		2B93A3C81F929A6F006B5E3E /* FDAdvantageSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDAdvantageSwitch.swift; sourceTree = "<group>"; };
 		2B93A3CD1F92DB2B006B5E3E /* customize.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = customize.storyboard; sourceTree = "<group>"; };
+		2B93A3D01F93E595006B5E3E /* FDColorSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDColorSelectController.swift; sourceTree = "<group>"; };
+		2B93A3D21F93E5BC006B5E3E /* FDColorSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDColorSelectCell.swift; sourceTree = "<group>"; };
+		2B93A3D41F93EE47006B5E3E /* CustomizeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeController.swift; sourceTree = "<group>"; };
+		2B93A3D61F93F015006B5E3E /* FDDisplayPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDDisplayPreference.swift; sourceTree = "<group>"; };
 		2B9DA7571F8ACC84007311EB /* 10dice.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 10dice.aif; sourceTree = "<group>"; };
 		2BC3F2C41F8ADC30001450C3 /* FDSavedDiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDSavedDiceController.swift; sourceTree = "<group>"; };
 		2BC3F2C61F8ADC86001450C3 /* FDSavedDiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDSavedDiceCell.swift; sourceTree = "<group>"; };
@@ -125,8 +133,9 @@
 				2B93A3C81F929A6F006B5E3E /* FDAdvantageSwitch.swift */,
 				2B74ADB51F8A98F000F6139F /* FDFyreDice.swift */,
 				2B55CBCB1F89AEFE004B0BB7 /* Main.storyboard */,
-				2B93A3CD1F92DB2B006B5E3E /* customize.storyboard */,
-				2B55CBCE1F89AEFE004B0BB7 /* Assets.xcassets */,
+				2B93A3CF1F93E571006B5E3E /* Customise */,
+				2B55CBFD1F89CD5D004B0BB7 /* icon.png */,
+				2B30C1C61F940F81001B5C70 /* Assets.xcassets */,
 				2B55CBD01F89AEFE004B0BB7 /* LaunchScreen.storyboard */,
 				2B55CBD31F89AEFE004B0BB7 /* Info.plist */,
 				2B55CBF91F89CD27004B0BB7 /* Resources */,
@@ -159,7 +168,6 @@
 				2B9DA7571F8ACC84007311EB /* 10dice.aif */,
 				2B55CBFB1F89CD58004B0BB7 /* 1die.aif */,
 				2B55CC031F89CD78004B0BB7 /* Sounds */,
-				2B55CBFD1F89CD5D004B0BB7 /* icon.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -171,6 +179,18 @@
 				2B55CC011F89CD71004B0BB7 /* Awww.aif */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		2B93A3CF1F93E571006B5E3E /* Customise */ = {
+			isa = PBXGroup;
+			children = (
+				2B93A3CD1F92DB2B006B5E3E /* customize.storyboard */,
+				2B93A3D41F93EE47006B5E3E /* CustomizeController.swift */,
+				2B93A3D01F93E595006B5E3E /* FDColorSelectController.swift */,
+				2B93A3D21F93E5BC006B5E3E /* FDColorSelectCell.swift */,
+				2B93A3D61F93F015006B5E3E /* FDDisplayPreference.swift */,
+			);
+			path = Customise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,7 +307,7 @@
 				2B9DA7551F8ABA1D007311EB /* Awww.aif in Resources */,
 				2B55CBD21F89AEFE004B0BB7 /* LaunchScreen.storyboard in Resources */,
 				2B93A3CE1F92DB2B006B5E3E /* customize.storyboard in Resources */,
-				2B55CBCF1F89AEFE004B0BB7 /* Assets.xcassets in Resources */,
+				2B30C1C71F940F81001B5C70 /* Assets.xcassets in Resources */,
 				2B55CBCD1F89AEFE004B0BB7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,11 +334,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC3F2C71F8ADC86001450C3 /* FDSavedDiceCell.swift in Sources */,
+				2B93A3D71F93F015006B5E3E /* FDDisplayPreference.swift in Sources */,
 				2BC3F2C51F8ADC30001450C3 /* FDSavedDiceController.swift in Sources */,
 				2B74ADB61F8A98F000F6139F /* FDFyreDice.swift in Sources */,
+				2B93A3D31F93E5BC006B5E3E /* FDColorSelectCell.swift in Sources */,
+				2B93A3D51F93EE47006B5E3E /* CustomizeController.swift in Sources */,
 				2B93A3C91F929A6F006B5E3E /* FDAdvantageSwitch.swift in Sources */,
 				2B55CBCA1F89AEFE004B0BB7 /* FDDiceController.swift in Sources */,
 				2B55CBC81F89AEFE004B0BB7 /* AppDelegate.swift in Sources */,
+				2B93A3D11F93E595006B5E3E /* FDColorSelectController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EKUA3NG8A6;
 				INFOPLIST_FILE = "Fyre Dice/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trialbyfyre.Fyre-Dice";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -503,7 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EKUA3NG8A6;
 				INFOPLIST_FILE = "Fyre Dice/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.trialbyfyre.Fyre-Dice";
 				PRODUCT_NAME = "$(TARGET_NAME)";

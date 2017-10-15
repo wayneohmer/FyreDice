@@ -70,7 +70,9 @@ class FDDiceController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateDisplay()
-    }
+        self.view.backgroundColor = FDDisplayPreference.sharedDisplayPreferences.backgroundColor
+        FDDisplayPreference.updateApearenceIn(views: self.view.subviews)
+     }
     
     func makeSystemSoundUrls() {
         if let soundUrl = Bundle.main.url(forResource: self.deathSound, withExtension: "aif")  {
@@ -223,8 +225,10 @@ class FDDiceController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! FDSavedDiceController
-        vc.diceController = self
+        if segue.identifier == "SavedDice"{
+            let vc = segue.destination as! FDSavedDiceController
+            vc.diceController = self
+        }
     }
 
 
