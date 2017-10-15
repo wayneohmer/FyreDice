@@ -13,14 +13,22 @@ class FDFyreDice {
     var dice = [Int:Int]()
     var diceResults = [Int:Int]()
     var modifier = 0
+    var rollValue = 0
+    var advantageDisplayString = ""
+    static var shardedHistory = [FDFyreDice]()
     
-    var rollValue:Int {
-        get {
-            var returnValue = 0
-            for (_,value) in self.diceResults {
-                returnValue += value
+    var advantage = false {
+        didSet {
+            if advantage {
+                self.disadvantage = false
             }
-            return returnValue + self.modifier
+        }
+    }
+    var disadvantage = false {
+        didSet {
+            if disadvantage {
+                self.advantage = false
+            }
         }
     }
     
@@ -54,38 +62,14 @@ class FDFyreDice {
         }
     }
     
-    convenience init(with fyreDice:FDFyreDice) {
-        self.init()
-        self.dice = fyreDice.dice
-        self.modifier = fyreDice.modifier
-    }
-    
-    func add(multipier:Int, d die:Int) {
-        if var newValue = self.dice[die] {
-            newValue += multipier
-            self.dice[die] = newValue
-        } else {
-            self.dice[die] = multipier
+    var isAdvantageAllowed:Bool {
+        if let d20 = self.dice[20] {
+            return d20 == 1
         }
+        return false
     }
     
-    func clear() {
-        self.dice.removeAll()
-        self.diceResults.removeAll()
-        self.modifier = 0
-    }
-    
-    func roll() {
-        for (die,multiplier) in dice {
-            var thisResult = 0
-            for _ in 1 ... multiplier {
-                thisResult += Int(arc4random_uniform(UInt32(die)) + 1)
-            }
-            self.diceResults[die] = thisResult
-        }
-    }
-    
-    func display() -> String {
+    var display:String {
         var returnString = ""
         for (die,multiplier) in self.dice.sorted(by: {$0 < $1}) {
             if multiplier != 0 {
@@ -103,11 +87,72 @@ class FDFyreDice {
         return returnString == "" ? " " : returnString
     }
     
-    func resultDisplay () -> String {
+    var resultDisplay:String {
         var returnString = ""
         for (die,result) in self.diceResults.sorted(by: {$0 < $1}) {
-            returnString += "\(self.dice[die] ?? 0)d\(die)(\(result))"
+            if die == 20 && (self.advantage || self.disadvantage) {
+                returnString += "\(self.dice[die] ?? 0)d\(die)(\(self.advantageDisplayString))"
+            } else {
+                returnString += "\(self.dice[die] ?? 0)d\(die)(\(result))"
+            }
         }
         return returnString
     }
+    
+    convenience init(with fyreDice:FDFyreDice, includeResult isResultIncluded:Bool = false) {
+        self.init()
+        self.dice = fyreDice.dice
+        self.modifier = fyreDice.modifier
+        self.advantage = fyreDice.advantage
+        self.disadvantage = fyreDice.disadvantage
+        if isResultIncluded {
+            self.diceResults = fyreDice.diceResults
+            self.rollValue = fyreDice.rollValue
+        }
+    }
+    
+    func add(multipier:Int, d die:Int) {
+        if var newValue = self.dice[die] {
+            newValue += multipier
+            self.dice[die] = newValue
+        } else {
+            self.dice[die] = multipier
+        }
+    }
+    
+    func clear() {
+        self.dice.removeAll()
+        self.diceResults.removeAll()
+        self.advantageDisplayString = ""
+        self.modifier = 0
+        self.advantage = false
+        self.disadvantage = false
+    }
+    
+    func roll() {
+        for (die,multiplier) in dice {
+            var thisResult = Int(0)
+            if die == 20 && (self.advantage || self.disadvantage) {
+                let r1 = Int(arc4random_uniform(UInt32(die)) + 1)
+                let r2 = Int(arc4random_uniform(UInt32(die)) + 1)
+                if self.advantage {
+                    thisResult = r1 > r2 ? r1 : r2
+                    self.advantageDisplayString = r1 > r2 ? "\(r1) \(r2)" : "\(r2) \(r1)"
+                } else {
+                    thisResult = r1 < r2 ? r1 : r2
+                    self.advantageDisplayString = r1 < r2 ? "\(r1) \(r2)" : "\(r2) \(r1)"
+                }
+            } else {
+                for _ in 1 ... multiplier {
+                    thisResult += Int(arc4random_uniform(UInt32(die)) + 1)
+                }
+            }
+            self.diceResults[die] = thisResult
+        }
+        
+        self.rollValue = self.diceResults.reduce(0,{$0 + $1.value}) + self.modifier
+    }
+
 }
+    
+

@@ -26,12 +26,18 @@ class FDSavedDiceController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func indexTouched(_ sender: UIButton) {
-        if sender.tag >= self.savedDice.count {
-            self.savedDice.append(FDFyreDice(with:self.diceController?.dice ?? FDFyreDice()))
-        } else {
-            if let dice = self.diceController?.dice {
+        if let dice = self.diceController?.fyreDice {
+            if sender.tag >= self.savedDice.count {
+                if dice.dice.count > 0 {
+                    self.savedDice.append(FDFyreDice(with:self.diceController?.fyreDice ?? FDFyreDice()))
+                }
+            } else {
                 if dice.dice.count == 0 {
+                    self.tableView.beginUpdates()
                     self.savedDice.remove(at: sender.tag)
+                    self.tableView.deleteRows(at: [IndexPath(row:sender.tag, section:0)], with: .fade)
+                    self.tableView.endUpdates()
+                    return
                 } else {
                     self.savedDice[sender.tag] = FDFyreDice(with:dice)
                 }
@@ -41,8 +47,10 @@ class FDSavedDiceController: UITableViewController {
     }
     
     @IBAction func dieTouched(_ sender: UIButton) {
-        self.diceController?.dice = self.savedDice[sender.tag]
-        self.diceController?.displayLabel.text = self.diceController?.dice.display()
+        self.diceController?.fyreDice = self.savedDice[sender.tag]
+        self.diceController?.displayLabel.text = self.diceController?.fyreDice.display
+        self.diceController?.clearResult()
+        self.diceController?.fixAdnvatageSwitches()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,16 +64,32 @@ class FDSavedDiceController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FDSavedDiceCell", for: indexPath) as! FDSavedDiceCell
        
-        cell.indexButton.setTitle("S\(indexPath.row + 1)", for: .normal)
+        cell.indexButton.setTitle("Save", for: .normal)
         cell.indexButton.tag = indexPath.row
         cell.dieButton.tag = indexPath.row
         if indexPath.row >= self.savedDice.count {
             cell.dieButton.setTitle(" ", for: .normal)
+            cell.dieButton.isEnabled = false
         } else {
-            cell.dieButton.setTitle(self.savedDice[indexPath.row].display(), for: .normal)
+            cell.dieButton.setTitle(self.savedDice[indexPath.row].display, for: .normal)
+            cell.dieButton.isEnabled = true
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row < self.savedDice.count
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            self.savedDice.remove(at: indexPath.row)
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            self.tableView.endUpdates()
+        }
     }
 
 }
