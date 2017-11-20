@@ -32,31 +32,40 @@ class FDSavedDiceController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func indexTouched(_ sender: UIButton) {
-        if let dice = self.diceController?.fyreDice {
-            if sender.tag >= self.savedDice.count {
-                if dice.dice.count > 0 {
-                    self.savedDice.append(FDFyreDice(with:self.diceController?.fyreDice ?? FDFyreDice()))
-                }
+        guard let diceController = self.diceController else {
+            return
+        }
+        let dice = diceController.fyreDice
+        if sender.tag >= self.savedDice.count {
+            if dice.dice.count > 0 {
+                self.savedDice.append(FDFyreDice(with:diceController.fyreDice))
+                let oops = FDOops(fyreDice: FDFyreDice(), type: FDOops.OopsType.save)
+                oops.saveIndex = sender.tag
+                diceController.oopsStack.append(oops)
+            }
+        } else {
+            let oops = FDOops(fyreDice: self.savedDice[sender.tag], type: FDOops.OopsType.save)
+            oops.saveIndex = sender.tag
+            diceController.oopsStack.append(oops)
+            if dice.dice.count == 0 {
+                self.tableView.beginUpdates()
+                self.savedDice.remove(at: sender.tag)
+                self.tableView.deleteRows(at: [IndexPath(row:sender.tag, section:0)], with: .fade)
+                self.tableView.endUpdates()
+                return
             } else {
-                if dice.dice.count == 0 {
-                    self.tableView.beginUpdates()
-                    self.savedDice.remove(at: sender.tag)
-                    self.tableView.deleteRows(at: [IndexPath(row:sender.tag, section:0)], with: .fade)
-                    self.tableView.endUpdates()
-                    return
-                } else {
-                    self.savedDice[sender.tag] = FDFyreDice(with:dice)
-                }
+                self.savedDice[sender.tag] = FDFyreDice(with:dice)
             }
         }
         self.tableView.reloadData()
     }
     
     @IBAction func dieTouched(_ sender: UIButton) {
-        self.diceController?.fyreDice = self.savedDice[sender.tag]
-        self.diceController?.displayLabel.text = self.diceController?.fyreDice.display
-        self.diceController?.clearResult()
-        self.diceController?.fixAdnvatageSwitches()
+        if let diceController = self.diceController {
+            diceController.oopsStack.append(FDOops(fyreDice: FDFyreDice(with:diceController.fyreDice, includeResult:true), type: FDOops.OopsType.buttonTouch))
+            diceController.fyreDice = FDFyreDice(with:self.savedDice[sender.tag])
+            diceController.updateDisplay()
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,12 +101,15 @@ class FDSavedDiceController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
+            if let diceController = self.diceController {
+                let oops = FDOops(fyreDice: FDFyreDice(with:self.savedDice[indexPath.row]), type: FDOops.OopsType.saveDelete)
+                oops.saveIndex = indexPath.row
+                diceController.oopsStack.append(oops)
+            }
             self.savedDice.remove(at: indexPath.row)
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .fade)
-            
             self.tableView.endUpdates()
         }
     }
-
 }

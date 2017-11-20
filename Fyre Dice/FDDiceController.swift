@@ -9,7 +9,6 @@
 import UIKit
 import AudioToolbox
 
-
 class FDDiceController: UIViewController {
 
     @IBOutlet weak var displayLabel: UILabel!
@@ -54,6 +53,8 @@ class FDDiceController: UIViewController {
     var soundUrls = [String:CFURL]()
     var hasRolled = false
     var currentHistoryIndex = 0
+    var oopsStack = [FDOops]()
+    var savedDiceController:FDSavedDiceController!
     
     var fyreDice = FDFyreDice()
     
@@ -92,12 +93,7 @@ class FDDiceController: UIViewController {
         }
     }
   
-    func clearResult() {
-        self.resultDisplayLabel.text = " "
-        self.rollValueLabel.text = " "
-    }
-    
-    func fixAdnvatageSwitches () {
+    func fixAdvantageSwitches () {
         if self.fyreDice.isAdvantageAllowed {
             self.advantageSwitch.isEnabled = true
             self.disadvantageSwitch.isEnabled = true
@@ -116,7 +112,7 @@ class FDDiceController: UIViewController {
         self.rollButton.isEnabled = self.fyreDice.dice.count > 0
         self.historyBackButton.isEnabled = self.currentHistoryIndex > 0
         self.historyForwardButton.isEnabled = self.currentHistoryIndex < FDFyreDice.shardedHistory.count-1
-        self.fixAdnvatageSwitches()
+        self.fixAdvantageSwitches()
 
     }
     
@@ -138,6 +134,7 @@ class FDDiceController: UIViewController {
     }
     
     @IBAction func rollTouched() {
+        self.oopsStack.append(FDOops(fyreDice: FDFyreDice(with:self.fyreDice, includeResult:true), type: FDOops.OopsType.roll))
         self.hasRolled = true
         self.fyreDice.roll()
         var soundURL:CFURL?
@@ -178,16 +175,16 @@ class FDDiceController: UIViewController {
     }
     
     @IBAction func clearTouched() {
+        self.oopsStack.append(FDOops(fyreDice: FDFyreDice(with:self.fyreDice, includeResult:true), type: FDOops.OopsType.buttonTouch))
+
         self.fyreDice.clear()
-        self.displayLabel.text = " "
-        self.clearResult()
-        self.fixAdnvatageSwitches()
+        self.updateDisplay()
     }
     
     @IBAction func dieTouched(_ sender: UIButton) {
+        self.oopsStack.append(FDOops(fyreDice: FDFyreDice(with:self.fyreDice, includeResult:true), type: FDOops.OopsType.buttonTouch))
         if hasRolled {
             self.fyreDice.clear()
-            self.clearResult()
             self.hasRolled = false
         }
         let components = sender.title(for: .normal)?.components(separatedBy: "d")
@@ -198,6 +195,7 @@ class FDDiceController: UIViewController {
     }
     
     @IBAction func modifierTouched(_ sender: UIButton) {
+        self.oopsStack.append(FDOops(fyreDice: FDFyreDice(with:self.fyreDice, includeResult:true), type: FDOops.OopsType.buttonTouch))
         let modifier = Int(sender.title(for: .normal) ?? "0") ?? 0
         self.fyreDice.modifier += modifier
         self.updateDisplay()
@@ -219,16 +217,48 @@ class FDDiceController: UIViewController {
         }
     }
     
+    @IBAction func oopsTouched() {
+        if let oops = oopsStack.last {
+            switch oops.type {
+            case .buttonTouch:
+                self.fyreDice = FDFyreDice(with:oops.fyreDice, includeResult:true)
+                self.updateDisplay()
+            case .roll:
+                self.fyreDice = FDFyreDice(with:oops.fyreDice, includeResult:true)
+                self.updateDisplay()
+                if self.currentHistoryIndex > 0 {
+                    FDFyreDice.shardedHistory.removeLast()
+                    self.currentHistoryIndex -= 1
+                }
+
+            case .saveDelete:
+                self.savedDiceController.savedDice.insert(FDFyreDice(with:oops.fyreDice), at: oops.saveIndex)
+                self.savedDiceController.tableView.reloadData()
+            case .save:
+                if oops.saveIndex < self.savedDiceController.savedDice.count {
+                    if oops.fyreDice.dice.count > 0 {
+                        self.savedDiceController.savedDice[oops.saveIndex] = FDFyreDice(with:oops.fyreDice)
+                    } else {
+                        self.savedDiceController.savedDice.remove(at: oops.saveIndex)
+                    }
+                } else {
+                    self.savedDiceController.savedDice.append(FDFyreDice(with:oops.fyreDice))
+                }
+                self.savedDiceController.tableView.reloadData()
+            }
+            oopsStack.removeLast()
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SavedDice"{
-            let vc = segue.destination as! FDSavedDiceController
-            vc.diceController = self
-        }
+        if segue.identifier == "SavedDice" {
+            self.savedDiceController = segue.destination as! FDSavedDiceController
+            self.savedDiceController.diceController = self
+        } 
     }
 
 

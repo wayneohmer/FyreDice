@@ -99,6 +99,24 @@ class FDFyreDice {
         return returnString
     }
     
+    var historyDisplay:String {
+        var returnString = ""
+        for (die,result) in self.diceResults.sorted(by: {$0 < $1}) {
+            if die == 20 && (self.advantage || self.disadvantage) {
+                returnString += "\(self.dice[die] ?? 0)d\(die)(\(self.advantageDisplayString))"
+            } else {
+                returnString += "\(self.dice[die] ?? 0)d\(die)(\(result))"
+            }
+        }
+        if self.modifier != 0 {
+            let sign = modifier > 0 ? "+" : ""
+            returnString += "\(sign)\(self.modifier)"
+        }
+        returnString += " = \(self.rollValue)"
+        
+        return returnString
+    }
+    
     convenience init(with fyreDice:FDFyreDice, includeResult isResultIncluded:Bool = false) {
         self.init()
         self.dice = fyreDice.dice
@@ -123,6 +141,7 @@ class FDFyreDice {
     func clear() {
         self.dice.removeAll()
         self.diceResults.removeAll()
+        self.rollValue = 0
         self.advantageDisplayString = ""
         self.modifier = 0
         self.advantage = false
@@ -143,8 +162,13 @@ class FDFyreDice {
                     self.advantageDisplayString = r1 < r2 ? "\(r1) \(r2)" : "\(r2) \(r1)"
                 }
             } else {
-                for _ in 1 ... multiplier {
-                    thisResult += Int(arc4random_uniform(UInt32(die)) + 1)
+                let sign = multiplier > 0
+                for _ in 1 ... abs(multiplier) {
+                    if sign {
+                        thisResult += Int(arc4random_uniform(UInt32(die)) + 1)
+                    } else {
+                        thisResult -= Int(arc4random_uniform(UInt32(die)) + 1)
+                    }
                 }
             }
             self.diceResults[die] = thisResult
