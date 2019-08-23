@@ -41,6 +41,7 @@ class CustomizeController: UITableViewController {
     }
     
     @IBAction func doneTouched(_ sender: UIBarButtonItem) {
+        FDDisplayPreference.sharedDisplayPreferences.savePreferences()
         self.dismiss(animated: true, completion: nil)
     }
     

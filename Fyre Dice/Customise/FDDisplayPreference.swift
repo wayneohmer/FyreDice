@@ -27,8 +27,48 @@ class FDDisplayPreference {
         return FDDisplayPreference.barImageDict[self.buttonImage]!
     }
     
+    //Make string dict to support standared defautls.
+    static let buttonDict = ["Blue":UIImage(named:"BlueButton")!,"Purple":UIImage(named:"PurpleButton")!,"Green":UIImage(named:"GreenButton")!,"Red":UIImage(named:"RedButton")!,"Yellow":UIImage(named:"YellowButton")!,"Grey":UIImage(named:"GreyButton")!,"Brown":UIImage(named:"BrownButton")!]
+    
+    static let colorDict = ["Black":UIColor.black,"Blue":UIColor.blue,"Brown":UIColor.brown,"Cyan":UIColor.cyan,"Green":UIColor.green,"Magenta":UIColor.magenta,"Orange":UIColor.orange,"Purple":UIColor.purple,"Red":UIColor.red,"Yellow":UIColor.yellow,"White":UIColor.white]
+
+    
     static var sharedDisplayPreferences = FDDisplayPreference()
+    
+    private func keyFor(color: UIColor) -> String? {
+        for (key, dictColor) in FDDisplayPreference.colorDict {
+            if color == dictColor {
+                return key
+            }
+        }
+        return nil
+    }
+    
+    private func keyFor(button: UIImage) -> String? {
+        for (key, dictButton) in FDDisplayPreference.buttonDict {
+            if button == dictButton {
+                return key
+            }
+        }
+        return nil
+    }
  
+    public func savePreferences() {
+        UserDefaults.standard.set(self.keyFor(color: backgroundColor), forKey:"backgroundColor")
+        UserDefaults.standard.set(self.keyFor(color: textColor), forKey:"textColor")
+        UserDefaults.standard.set(self.keyFor(color: maxColor), forKey:"maxColor")
+        UserDefaults.standard.set(self.keyFor(color: minColor), forKey:"minColor")
+        UserDefaults.standard.set(self.keyFor(button: buttonImage), forKey:"buttonImage")
+    }
+    
+    public func getPreferences() {
+        self.backgroundColor = FDDisplayPreference.colorDict[UserDefaults.standard.string(forKey:"backgroundColor") ?? "Black"] ?? UIColor.black
+        self.textColor = FDDisplayPreference.colorDict[UserDefaults.standard.string(forKey:"textColor") ?? "Yellow"] ?? UIColor.yellow
+        self.maxColor = FDDisplayPreference.colorDict[UserDefaults.standard.string(forKey:"maxColor") ?? "Red"] ?? UIColor.red
+        self.minColor = FDDisplayPreference.colorDict[UserDefaults.standard.string(forKey:"minColor") ?? "Green"] ?? UIColor.green
+        self.buttonImage = FDDisplayPreference.buttonDict[UserDefaults.standard.string(forKey:"buttonImage") ?? "Red"] ?? UIImage(named:"RedButton")!
+    }
+        
     public class func updateApearenceIn(views:[UIView]) {
         for view in views {
             if view is UIStackView {

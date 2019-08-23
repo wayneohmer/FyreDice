@@ -256,7 +256,7 @@ class FDDiceController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SavedDice" {
-            self.savedDiceController = segue.destination as! FDSavedDiceController
+            self.savedDiceController = segue.destination as? FDSavedDiceController
             self.savedDiceController.diceController = self
         } 
     }

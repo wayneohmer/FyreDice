@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FDSavedDiceController: UITableViewController {
+class SavedDiceController: UITableViewController {
 
     var savedDice = [FDFyreDice]()
     var diceController:FDDiceController?
@@ -99,8 +99,8 @@ class FDSavedDiceController: UITableViewController {
         return indexPath.row < self.savedDice.count
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
             if let diceController = self.diceController {
                 let oops = FDOops(fyreDice: FDFyreDice(with:self.savedDice[indexPath.row]), type: FDOops.OopsType.saveDelete)
                 oops.saveIndex = indexPath.row

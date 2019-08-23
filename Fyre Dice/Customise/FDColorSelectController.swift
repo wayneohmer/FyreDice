@@ -10,7 +10,7 @@ import UIKit
 
 class FDColorSelectController: UITableViewController {
     
-    enum preferneceType:String {
+    enum preferneceType: String {
         case button = "Button"
         case background = "Background"
         case text = "Text"
