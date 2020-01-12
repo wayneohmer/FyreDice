@@ -1,5 +1,5 @@
 //
-//  FDSavedDiceController.swift
+//  SavedDiceController.swift
 //  Fyre Dice
 //
 //  Created by Wayne Ohmer on 10/8/17.

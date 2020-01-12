@@ -54,7 +54,7 @@ class FDDiceController: UIViewController {
     var hasRolled = false
     var currentHistoryIndex = 0
     var oopsStack = [FDOops]()
-    var savedDiceController:FDSavedDiceController!
+    var savedDiceController:SavedDiceController!
     
     var fyreDice = FDFyreDice()
     
@@ -256,7 +256,7 @@ class FDDiceController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SavedDice" {
-            self.savedDiceController = segue.destination as? FDSavedDiceController
+            self.savedDiceController = segue.destination as? SavedDiceController
             self.savedDiceController.diceController = self
         } 
     }
